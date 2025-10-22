@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Cross Garment — Wear Your Faith</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1720;
+      --card:#0b1220;
+      --muted:#9aa7b2;
+      --accent:#FF6B6B;
+      --accent-2:#4ECDC4;
+      --glow: 0 8px 40px rgba(78,205,196,0.08), inset 0 1px 0 rgba(255,255,255,0.02);
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --light:#F7FFF7;
+      --radius:18px;
+      --transition: 450ms cubic-bezier(.2,.9,.3,1);
+      --card-height:420px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Montserrat', sans-serif;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(78,205,196,0.06), transparent 8%),
+        radial-gradient(700px 350px at 90% 90%, rgba(255,107,107,0.04), transparent 10%),
+        var(--bg);
+      color:var(--light);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      padding-bottom:60px;
+    }
+
+    /* Header */
+    header.top {
+      padding:32px 6%;
+      display:flex;
+      gap:24px;
+      align-items:center;
+      justify-content:space-between;
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .brand {
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .logo-badge{
+      width:64px;height:64px;border-radius:14px;
+      display:grid;place-items:center;
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow: 0 8px 30px rgba(78,205,196,0.12);
+      flex-shrink:0;
+      transform: rotate(-6deg);
+    }
+    .logo-badge svg { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35)); }
+
+    .brand h1{
+      font-family: 'Playfair Display', serif;
+      font-weight:700;
+      font-size:20px;
+      line-height:1;
+      letter-spacing:0.2px;
+    }
+    .brand p { font-size:12px;color:var(--muted);margin-top:6px }
+
+    nav.top-nav{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .tab-btn{
+      background:transparent;border:0;color:var(--light);padding:10px 16px;border-radius:999px;
+      font-weight:600;cursor:pointer;letter-spacing:0.2px;
+      transition: all 220ms;
+      position:relative;
+      overflow:hidden;
+    }
+    .tab-btn:hover{ transform: translateY(-6px); box-shadow:var(--glow) }
+    .tab-btn.active{
+      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45), 0 4px 14px rgba(78,205,196,0.06);
+    }
+
+    /* Hero */
+    .hero{
+      margin:32px 6%;
+      padding:40px;
+      border-radius:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:center;
+      box-shadow: 0 18px 60px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+
+    .hero-left h2{
+      font-family:'Playfair Display', serif;
+      font-size:40px;
+      color:var(--light);
+      margin-bottom:10px;
+      letter-spacing: -0.5px;
+    }
+    .hero-left p{ color:var(--muted); margin-bottom:18px; font-size:15px; line-height:1.6 }
+
+    .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; }
+    .btn{
+      padding:12px 18px;border-radius:999px;border:0;font-weight:700;cursor:pointer;
+      transition:var(--transition); letter-spacing:0.3px;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white; box-shadow: 0 10px 30px rgba(78,205,196,0.08);
+    }
+    .btn.ghost{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--light);
+    }
+
+    .hero-right{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      position:relative;
+    }
+    .hero-card{
+      width:420px;height:320px;border-radius:16px;overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:flex;flex-direction:column;justify-content:space-between;padding:18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      transform: translateY(0);
+    }
+    .hero-card img{ width:100%; height:220px; object-fit:cover; border-radius:10px }
+
+    /* Main content - sections behave like pages */
+    main{
+      margin:36px 6%;
+    }
+    .page{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      padding:28px;border-radius:18px; margin-bottom:28px;
+      min-height:360px;
+      opacity:0; transform: translateY(12px); transition: all 600ms cubic-bezier(.2,.9,.3,1);
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .page.show{ opacity:1; transform: translateY(0) }
+
+    /* Preserve sermon box text exactly — style container only */
+    .sermon-box{
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+      padding:22px;border-radius:14px;
+      border-left:6px solid rgba(78,205,196,0.12);
+      color:var(--light);
+      line-height:1.7;
+      box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+    }
+    .sermon-box p{ font-size:15px; color:var(--light) }
+
+    /* Prayer box */
+    .prayer-box{
+      margin-top:18px;
+      padding:22px;border-radius:14px;
+      background: linear-gradient(180deg, rgba(2,6,23,0.8), rgba(2,6,23,0.9));
+      border:1px solid rgba(255,255,255,0.02);
+      position:relative;
+      overflow:hidden;
+      font-style:italic;
+    }
+    .prayer-box p{ margin:0; font-size:15px; color:var(--light) }
+
+    /* About area uses two column card */
+    .about-grid{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:22px;align-items:center;margin-top:16px;
+    }
+    .about-text p{ color:var(--muted); line-height:1.7 }
+    .about-image img{ width:100%; height:100%; object-fit:cover; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6) }
+
+    /* Products grid */
+    .products-grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;
+    }
+    .product-card{
+      height:var(--card-height);
+      border-radius:14px;
+      overflow:hidden;
+      position:relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.003));
+      border:1px solid rgba(255,255,255,0.02);
+      transition: transform 420ms cubic-bezier(.2,.9,.3,1), box-shadow 420ms;
+      cursor:pointer;
+      display:flex;flex-direction:column;
+    }
+    .product-card:hover{ transform: translateY(-12px); box-shadow: 0 24px 60px rgba(2,6,23,0.7); }
+    .product-media{ height:58%; overflow:hidden; }
+    .product-media img{ width:100%; height:100%; object-fit:cover; transition:transform 600ms; }
+    .product-card:hover .product-media img{ transform: scale(1.08) rotate(-1deg) }
+    .product-info{ padding:14px; display:flex;flex-direction:column; gap:8px; margin-top:auto }
+    .product-title{ font-weight:700; color:var(--light); font-size:16px }
+    .product-desc{ font-size:13px; color:var(--muted) }
+    .product-bottom{ display:flex; justify-content:space-between; align-items:center; margin-top:auto }
+
+    .price{ font-weight:800; color:var(--accent); font-size:16px }
+    .grab-btn{
+      padding:8px 12px;border-radius:999px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;font-weight:800;cursor:pointer; text-decoration:none;
+      transition: transform 220ms;
+      box-shadow: 0 8px 30px rgba(78,205,196,0.08);
+    }
+    .grab-btn:active{ transform:scale(.98) }
+
+    /* Order page (modal-ish) */
+    .order-panel{
+      margin-top:14px;padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007));
+      display:flex; gap:18px; align-items:center; justify-content:space-between;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .order-preview{ display:flex; gap:12px; align-items:center }
+    .order-preview img{ width:84px;height:84px;border-radius:8px; object-fit:cover }
+    .order-meta{ color:var(--muted) }
+    .order-actions{ display:flex; gap:12px; align-items:center }
+
+    /* Form step styling */
+    .form-step {
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.005));
+      padding: 20px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    
+    .form-step h3 {
+      color: var(--accent-2);
+      margin-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .form-step p {
+      color: var(--muted);
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn.form-btn {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .btn.whatsapp-btn {
+      background: linear-gradient(90deg, #25D366, #128C7E);
+    }
+
+    /* Footer */
+    footer{
+      margin:32px 6%; padding:22px;border-radius:14px; text-align:center;
+      color:var(--muted);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007));
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Floating social pill on right */
+    .social-pill{
+      position:fixed; right:20px; bottom:40px; z-index:140;
+      display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+    }
+    .social-main{
+      width:58px;height:58px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;place-items:center;color:white;font-weight:800;cursor:pointer;
+      box-shadow: 0 14px 40px rgba(78,205,196,0.12);
+      transition: transform 200ms;
+    }
+    .social-main:hover{ transform: scale(1.06) }
+    .social-list{
+      display:flex; gap:8px; flex-direction:column; margin-bottom:6px; opacity:0; transform: translateY(8px);
+      transition: all 320ms;
+      pointer-events:none;
+    }
+    .social-list.show{ opacity:1; transform: translateY(0); pointer-events:auto }
+
+    .social-item{
+      display:flex; gap:10px; align-items:center; padding:10px 14px; border-radius:999px;
+      background: rgba(255,255,255,0.03); backdrop-filter: blur(6px); border:1px solid rgba(255,255,255,0.02);
+      color:var(--light); text-decoration:none; font-weight:700; font-size:13px;
+    }
+
+    .social-icon{
+      width:20px; height:20px; flex-shrink:0;
+    }
+
+    /* small */
+    @media (max-width:980px){
+      .hero{ grid-template-columns: 1fr; }
+      .hero-right{ order:2; margin-top:8px }
+      .about-grid{ grid-template-columns: 1fr; }
+      .action-buttons { flex-direction: column; }
+    }
+    @media (max-width:520px){
+      header.top{ padding:18px }
+      .brand p{ display:none }
+      .logo-badge{ width:48px;height:48px }
+      .hero-left h2{ font-size:28px }
+      .product-card{ height:360px }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="brand">
+      <div class="logo-badge" aria-hidden>
+        <!-- simple cross icon -->
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="3" width="4" height="18" rx="1.5" fill="white"/>
+          <rect x="3" y="10" width="18" height="4" rx="1.5" fill="white"/>
+        </svg>
+      </div>
+      <div>
+        <h1>The Cross Garment</h1>
+        <p>Wear Your Faith • Share The Gospel</p>
+      </div>
+    </div>
+
+    <nav class="top-nav" role="tablist" aria-label="Main navigation">
+      <button class="tab-btn active" data-target="salvation">Salvation</button>
+      <button class="tab-btn" data-target="prayer">Prayer</button>
+      <button class="tab-btn" data-target="about">About</button>
+      <button class="tab-btn" data-target="products">Our Shirts</button>
+      <button class="tab-btn" data-target="order">Order / Grab Yours</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" aria-hidden="false">
+    <div class="hero-left">
+      <h2>Wear Your Faith — Start Conversations</h2>
+      <p>Premium faith-inspired apparel crafted to spark hope-filled conversations. High-quality cotton, modern cuts, and bold statements — each purchase supports missions and evangelism.</p>
+      <div class="hero-ctas">
+        <button class="btn" data-target="products">Explore Collection</button>
+        <button class="btn ghost" data-target="order">Grab Yours Now</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <img src="Jesus.jpg" alt="T shirt display">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-weight:800">Featured</div>
+            <div style="color:var(--muted);font-size:13px">Jesus Tee</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:900;color:var(--accent)">₵70</div>
+            <div style="font-size:12px;color:var(--muted)">Delivery everywhere in Ghana</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- Salvation page -->
+    <section id="salvation" class="page show" aria-labelledby="salvation-title">
+      <h2 id="salvation-title" style="font-family: 'Playfair Display', serif; color:var(--accent); margin-bottom:12px">The Gift of Salvation</h2>
+      <div class="sermon-box" id="sermon-original">
+        <p>God loves you deeply and wants you to experience peace and eternal life through Jesus Christ. The Bible tells us that "all have sinned and fall short of the glory of God" (Romans 3:23), but the good news is that "God demonstrates His own love toward us, in that while we were still sinners, Christ died for us" (Romans 5:8).</p>
+        <p>Salvation is a free gift from God that we receive by faith. It's not about being good enough or doing enough good works - it's about accepting what Jesus has already done for you on the cross. "For by grace you have been saved through faith, and that not of yourselves; it is the gift of God, not of works, lest anyone should boast" (Ephesians 2:8-9).</p>
+        <p>Today, you can receive this gift by turning from your sins (repentance) and trusting in Jesus Christ as your Lord and Savior. This decision will transform your life now and for eternity!</p>
+      </div>
+    </section>
+
+    <!-- Prayer page -->
+    <section id="prayer" class="page" aria-labelledby="prayer-title">
+      <h2 id="prayer-title" style="font-family: 'Playfair Display', serif; color:var(--accent); margin-bottom:12px">Salvation Prayer</h2>
+      <div class="prayer-box">
+        <p>"Heavenly Father, I come to You admitting that I am a sinner. I believe that Jesus Christ is Your Son, that He died on the cross for my sins, and that You raised Him from the dead. I turn from my sins and invite Jesus to come into my heart and life as my personal Lord and Savior. I want to trust and follow Him as my Lord from this day forward. Thank You, Lord, for saving me and forgiving me! In Jesus' name I pray, Amen."</p>
+        <p style="margin-top: 2rem; font-weight: bold;">If you prayed this prayer, we'd love to celebrate with you! Contact us and let us know about your decision to follow Christ.</p>
+      </div>
+    </section>
+
+    <!-- About page -->
+    <section id="about" class="page" aria-labelledby="about-title">
+      <h2 id="about-title" style="font-family: 'Playfair Display', serif; color:var(--accent); margin-bottom:12px">About The Cross Garment</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>The Cross Garment was born from a passion to share the Gospel through fashion. Our mission is simple: to create high-quality, faith-inspired clothing that sparks conversations about Jesus Christ.</p>
+          <p>Each design is carefully crafted to not just look good, but to carry a message of hope, love, and salvation. When you wear our shirts, you're not just making a fashion statement - you're becoming a walking testimony of God's love.</p>
+          <p>We believe that something as simple as a t-shirt can be used by God to open doors for spiritual conversations. A portion of every sale goes to support missions and evangelism efforts around the world.</p>
+        </div>
+        <div class="about-image">
+          <img src="log.jpg" alt="Our Team">
+        </div>
+      </div>
+    </section>
+
+    <!-- Products page: 12 cards -->
+    <section id="products" class="page" aria-labelledby="products-title">
+      <h2 id="products-title" style="font-family: 'Playfair Display', serif; color:var(--accent); margin-bottom:12px">Our Faith-Inspired Collection</h2>
+      <div class="products-grid" id="products-grid">
+        <!-- 1 -->
+        <article class="product-card">
+          <div class="product-media"><img src="yhwh copy1.png" alt="YHWH Shirt"></div>
+          <div class="product-info">
+            <div class="product-title">YHWH Shirt</div>
+            <div class="product-desc">Crew neck, soft cotton — proclaim your story.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="YHWH Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="product-card">
+          <div class="product-media"><img src="Jesus.jpg" alt="Jesus Saves Hoodie"></div>
+          <div class="product-info">
+            <div class="product-title">Jesus</div>
+            <div class="product-desc">Cozy — warm in body, warmer in spirit.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Jesus Saves Hoodie" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="product-card">
+          <div class="product-media"><img src="faith over fear.jpg" alt="Faith Over Fear Shirt"></div>
+          <div class="product-info">
+            <div class="product-title">Faith Over Fear</div>
+            <div class="product-desc">Lightweight and bold — choose faith daily.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Faith Over Fear Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="product-card">
+          <div class="product-media"><img src="PUSH.jpg" alt="Cross Warrior Tank"></div>
+          <div class="product-info">
+            <div class="product-title">PUSH</div>
+            <div class="product-desc">Sleeveless, movement-friendly, Pray Until Something Happens!!</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Cross Warrior Tank" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="product-card">
+          <div class="product-media"><img src="LordMyStrenght.jpg" alt="Grace & Truth Tee"></div>
+          <div class="product-info">
+            <div class="product-title">The Lord Is My Strenght</div>
+            <div class="product-desc"> Classic and a confident brag about your source of strenght.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Grace & Truth Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="product-card">
+          <div class="product-media"><img src="Isaiahwh.jpg" alt="Hope Springs Hoodie"></div>
+          <div class="product-info">
+            <div class="product-title">Isaiah 40:31</div>
+            <div class="product-desc">Soft fleece, bold chest print.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Hope Springs Hoodie" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="product-card">
+          <div class="product-media"><img src="FaithOn.jpg" alt="Armor of God Tee"></div>
+          <div class="product-info">
+            <div class="product-title">Faith On</div>
+            <div class="product-desc">Comfort fit, inspiring message for daily life, Get your faith on.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Armor of God Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="product-card">
+          <div class="product-media"><img src="KAFUI NEW1.jpg" alt="Light of the World Tee"></div>
+          <div class="product-info">
+            <div class="product-title">Light of the World Tee</div>
+            <div class="product-desc">Bright print for bold testimony.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Light of the World Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="product-card">
+          <div class="product-media"><img src="GGMcream.jpg" alt="Grace Hoodie"></div>
+          <div class="product-info">
+            <div class="product-title">Gods Got Me</div>
+            <div class="product-desc">Casual, warm, everyday testimony.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Grace Pullover Hoodie" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="product-card">
+          <div class="product-media"><img src="Plug God.jpg" alt="Crossback Tank"></div>
+          <div class="product-info">
+            <div class="product-title">God Is The Plug</div>
+            <div class="product-desc">Active like never before in Christ.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Crossback Tank" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 11 -->
+        <article class="product-card">
+          <div class="product-media"><img src="ThisLove.jpg" alt="Verse Tee"></div>
+          <div class="product-info">
+            <div class="product-title">This Love</div>
+            <div class="product-desc">Scripture-inspired minimal design.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Verse Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 12 -->
+        <article class="product-card">
+          <div class="product-media"><img src="TKL wh.jpg" alt="Cross Classic Tee"></div>
+          <div class="product-info">
+            <div class="product-title">This Kind Love</div>
+            <div class="product-desc">Timeless cross design for everyday wear.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Cross Classic Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 13 -->
+         <article class="product-card">
+          <div class="product-media"><img src="The Lord is my sherped.jpg" alt="Cross Classic Tee"></div>
+          <div class="product-info">
+            <div class="product-title">The Lord Is My sherped</div>
+            <div class="product-desc">Who Is Your sherped??.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Cross Classic Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 14 -->
+         <article class="product-card">
+          <div class="product-media"><img src="Yhwh.jpg" alt="Cross Classic Tee"></div>
+          <div class="product-info">
+            <div class="product-title">YHWH white</div>
+            <div class="product-desc">Timeless cross design for everyday wear.</div>
+            <div class="product-bottom">
+              <div class="price">₵70</div>
+              <a class="grab-btn" href="#" data-title="Cross Classic Tee" data-price="70">Grab Yours Now</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Order page -->
+    <section id="order" class="page" aria-labelledby="order-title">
+      <h2 id="order-title" style="font-family: 'Playfair Display', serif; color:var(--accent); margin-bottom:12px">Order / Grab Yours</h2>
+      
+      <!-- Order panel for selected product -->
+      <div id="order-panel" class="order-panel" style="display:none">
+        <div class="order-preview">
+          <img id="order-img" src="" alt="product preview">
+          <div>
+            <div id="order-title-text" style="font-weight:800">Selected Product</div>
+            <div class="order-meta" id="order-price" style="font-size:13px">Price: ₵70</div>
+          </div>
+        </div>
+        <div class="order-actions">
+          <button id="clear-order" class="btn ghost">Clear Selection</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-step" id="action-buttons">
+        <h3>🚀 Ready to Order?</h3>
+        <p>Choose your preferred way to place your order. You can either fill out our detailed form with size and color preferences, or message us directly on WhatsApp.</p>
+        
+        <div class="action-buttons">
+          <a class="btn form-btn" href="https://forms.gle/4qPLp4xciYnBZ1iA6" target="_blank" rel="noopener noreferrer" id="open-form">
+            📝 Fill Order Form
+          </a>
+          <a class="btn whatsapp-btn" href="https://wa.me/message/2DNZZQBTDIOUD1" target="_blank" rel="noopener noreferrer" id="open-whatsapp">
+            💬 Message on WhatsApp
+          </a>
+        </div>
+        
+        <p style="margin-top: 15px; font-size: 13px; color: var(--muted);">
+          <strong>Form Option:</strong> Specify size, color, and shipping details<br>
+          <strong>WhatsApp Option:</strong> Quick chat to discuss your order
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div>&copy; 2023 The Cross Garment. All Rights Reserved. • Wear Your Faith • Share The Gospel</div>
+  </footer>
+
+  <!-- Floating social pill -->
+  <div class="social-pill" aria-hidden>
+    <div class="social-list" id="social-list">
+      <a class="social-item" href="https://wa.me/message/2DNZZQBTDIOUD1" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" class="social-icon">
+        WhatsApp • +233 50 968 4546
+      </a>
+      <a class="social-item" href="https://www.instagram.com/the_cross_garments?igsh=MWk4NWI3MnI2azI1aA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon">
+        Instagram • @the_cross_garments
+      </a>
+      <a class="social-item" href="https://facebook.com/thecrossgarment" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" class="social-icon">
+        Facebook • The Cross Garment
+      </a>
+      <a class="social-item" href="https://twitter.com/thecrossgar" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt="Twitter" class="social-icon">
+        X / Twitter • @thecrossgar
+      </a>
+    </div>
+
+    <div class="social-main" id="social-toggle" title="Show social handles">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:block">
+        <path d="M12 2v20M2 12h20" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    // --- Tabs / Page switching ---
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const pages = document.querySelectorAll('.page');
+
+    function showPage(id){
+      pages.forEach(p => {
+        if(p.id === id){
+          p.classList.add('show');
+          setTimeout(() => {
+            let targetElement;
+            switch(id) {
+              case 'salvation':
+                targetElement = document.getElementById('salvation-title');
+                break;
+              case 'prayer':
+                targetElement = document.getElementById('prayer-title');
+                break;
+              case 'about':
+                targetElement = document.getElementById('about-title');
+                break;
+              case 'products':
+                targetElement = document.getElementById('products-title');
+                break;
+              case 'order':
+                targetElement = document.querySelector('#order h2');
+                break;
+            }
+            
+            if(targetElement){
+              targetElement.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start'
+              });
+            }
+          }, 100);
+        } else {
+          p.classList.remove('show');
+        }
+      });
+      tabBtns.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+    }
+
+    tabBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=> showPage(btn.dataset.target));
+    });
+
+    // Buttons in hero that have data-target
+    document.querySelectorAll('[data-target]').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        const t = el.dataset.target;
+        if(t) showPage(t);
+      });
+    });
+
+    // --- Order Flow ---
+    const grabButtons = document.querySelectorAll('.grab-btn');
+    const orderPanel = document.getElementById('order-panel');
+    const orderTitle = document.getElementById('order-title-text');
+    const orderPrice = document.getElementById('order-price');
+    const orderImg = document.getElementById('order-img');
+    const clearOrder = document.getElementById('clear-order');
+    const openForm = document.getElementById('open-form');
+    const openWhatsapp = document.getElementById('open-whatsapp');
+
+    // Store selected product
+    let selectedProduct = null;
+
+    grabButtons.forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const title = btn.dataset.title || 'Product';
+        const price = btn.dataset.price || '';
+        const card = btn.closest('.product-card');
+        const img = card.querySelector('img')?.src || '';
+        
+        // Store selected product
+        selectedProduct = { title, price, img };
+        
+        // Update order panel
+        orderTitle.textContent = title;
+        orderPrice.textContent = `Price: ₵${price}`;
+        orderImg.src = img;
+        orderPanel.style.display = 'flex';
+        
+        // Update WhatsApp link with product info
+        const message = `Hi! I'm interested in ordering the "${title}". Please let me know how to proceed.`;
+        openWhatsapp.href = `https://wa.me/message/2DNZZQBTDIOUD1?text=${encodeURIComponent(message)}`;
+        
+        // Go to order page
+        showPage('order');
+        
+        setTimeout(() => {
+          const orderHeading = document.querySelector('#order h2');
+          if(orderHeading){
+            orderHeading.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start'
+            });
+          }
+        }, 150);
+      });
+    });
+
+    // Clear order
+    clearOrder.addEventListener('click', ()=>{
+      orderPanel.style.display = 'none';
+      orderTitle.textContent = 'Selected Product';
+      orderPrice.textContent = 'Price: ₵70';
+      orderImg.src = '';
+      selectedProduct = null;
+      
+      // Reset WhatsApp link
+      openWhatsapp.href = 'https://wa.me/message/2DNZZQBTDIOUD1';
+    });
+
+    // --- Social pill ---
+    const socialToggle = document.getElementById('social-toggle');
+    const socialList = document.getElementById('social-list');
+    let socialOpen = false;
+    socialToggle.addEventListener('click', ()=>{
+      socialOpen = !socialOpen;
+      socialList.classList.toggle('show', socialOpen);
+    });
+
+    document.addEventListener('click', (e)=>{
+      if(!e.target.closest('.social-pill')){ socialOpen = false; socialList.classList.remove('show'); }
+    });
+
+    // Small page enter animation for sections
+    document.querySelectorAll('.page').forEach((p, idx)=>{
+      setTimeout(()=> p.classList.add('show'), 140 * idx + 200);
+    });
+
+    if(location.hash){
+      const h = location.hash.replace('#','');
+      const valid = Array.from(document.querySelectorAll('.page')).some(p => p.id === h);
+      if(valid) showPage(h);
+    }
+
+    // Bonus: lazy rotate hero image for small parallax vibe
+    let lastMove = 0;
+    document.addEventListener('mousemove', (e)=>{
+      if(Date.now() - lastMove < 50) return;
+      lastMove = Date.now();
+      const heroRight = document.querySelector('.hero-right');
+      const nx = (e.clientX / window.innerWidth - 0.5) * 6;
+      const ny = (e.clientY / window.innerHeight - 0.5) * 6;
+      heroRight.style.transform = `translate3d(${nx}px, ${ny}px, 0)`;
+    });
+  </script>
+
+</body>
+</html>
